@@ -1,0 +1,17 @@
+{
+  "name": "CHainBlock",
+  "description": "Bruh",
+  "version": "1.0",
+  "manifest_version": 3,
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+        "16": "/images/ChainBlock_logo_16.png",
+        "32": "/images/ChainBlock_logo_32.png",
+        "48": "/images/ChainBlock_logo_48.png",
+        "128": "/images/ChainBlock_logo_128.png"
+    }
+  }
+}
+
