@@ -1,0 +1,18 @@
+body {
+	text-align: center;
+	padding: .5em;
+     }
+h1 {
+	font-size: 15px;
+	text-align: center;
+   }
+button {
+		outline: none;
+  		margin: 5px;
+  		border: none;
+  		border-radius: 2px;
+	 }
+button.current {
+			box-shadow: 0 0 0 2px white,
+              	0 0 0 4px black;
+		   }
