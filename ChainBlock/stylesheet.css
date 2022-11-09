@@ -1,7 +1,15 @@
 body {
 	text-align: center;
 	padding: .5em;
-     }
+	color: black;
+	
+ }
+
+ a {
+	text-decoration: none;
+	color: black;
+ }
+
 h1 {
 	font-size: 15px;
 	text-align: center;
