@@ -57,7 +57,7 @@ analytics_button = Button(frame, text = "View Analytics", fg = "red", command = 
 analytics_button['font'] = font_size
 analytics_button.pack(side = TOP, pady = "5")
 
-#very laggy and eventually crashed the app, but functional
+#can cause lag and/or the app to crash, but functional
 scan_button = Button(frame, text = "Scan", fg = "red", command = streamTweets)
 scan_button['font'] = font_size
 scan_button.pack(side = TOP, pady = "5")
