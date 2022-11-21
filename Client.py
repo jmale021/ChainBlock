@@ -27,6 +27,7 @@ def analytics_actions():
 
 
 root = Tk()
+root.title('ChainBlock')
 icon_photo = Image.open("ChainBlock_logo_16.jpeg")
 icon = ImageTk.PhotoImage(icon_photo)
 root.iconphoto(False, icon)
