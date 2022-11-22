@@ -21,7 +21,6 @@
 import tweepy
 import re
 import requests
-from PIL import Image
 
 
 # In[134]:
@@ -45,9 +44,9 @@ consumer_secret = 'PO6jkanwHnPltE9umZtTFnElEJ9GSWuxpso3SsEixg5mH3tMf2'
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
-api = tweepy.API(auth)
+#api = tweepy.API(auth)
 # This call should automatically manage rate limits by pausing if a limit is reached
-# api - tweepy.API(auth, wait_on_rate_limit = True)
+api = tweepy.API(auth, wait_on_rate_limit = True)
 
 
 # In[143]:
@@ -63,7 +62,28 @@ def streamTweets():
     printer = StreamListener(consumer_key, consumer_secret, access_token, access_token_secret)
     printer.filter(track = ["NewNFTProfilePic"])
 
-    
+def blockUser():
+    user = api.get_user(screen_name = 'NFT_Kaneki')
+    api.create_block(screen_name = user.screen_name)
+    return user.screen_name
+
+def unblockUser():
+    user = api.get_user(screen_name = 'NFT_Kaneki')
+    api.destroy_block(screen_name = user.screen_name)
+    return user.screen_name
+
+def scanTweets():
+    users = []
+    tag = '#NewNFTProfilePic'
+    date = '2022-11-20'
+    num = 10
+    tweets = tweepy.Cursor(api.search_tweets, tag, lang = "en", since_id = date, tweet_mode = 'extended').items(num)
+    list_tweets = [tweet for tweet in tweets]
+    i = 1
+    for tweet in list_tweets:
+        users.append(tweet.user.screen_name)
+        i = i + 1
+    return users    
 
 
 # In[ ]:
