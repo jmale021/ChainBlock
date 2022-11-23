@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[132]:
+# In[1]:
 
 
 # In[27]:
@@ -12,7 +12,7 @@
 # coding: utf-8
 
 
-# In[133]:
+# In[2]:
 
 
 # In[1]:
@@ -23,33 +23,42 @@ import re
 import requests
 
 
-# In[134]:
+# In[3]:
 
 
 # In[2]:
 
 
-access_token = '2712395911-ehqFfEGiM5COVQg149vqT5miIcvM8SorJmchg0N'
-access_token_secret = 'K9GuOkmrf1PuwUjUA7lblH3KGotsvIev4vvyYtGxu9Wd0'
+#access_token = '2712395911-ehqFfEGiM5COVQg149vqT5miIcvM8SorJmchg0N'
+#access_token_secret = 'K9GuOkmrf1PuwUjUA7lblH3KGotsvIev4vvyYtGxu9Wd0'
 consumer_key = 'LKi9NfPzoRzF7Ha54SAd9bezO'
 consumer_secret = 'PO6jkanwHnPltE9umZtTFnElEJ9GSWuxpso3SsEixg5mH3tMf2'
 
 
-# In[135]:
+# In[4]:
 
 
 # In[3]:
 
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+#auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+#auth.set_access_token(access_token, access_token_secret)
 
-#api = tweepy.API(auth)
-# This call should automatically manage rate limits by pausing if a limit is reached
-api = tweepy.API(auth, wait_on_rate_limit = True)
+# automatically manage rate limits by pausing if a limit is reached
+#api = tweepy.API(auth, wait_on_rate_limit = True)
 
 
-# In[143]:
+# In[5]:
+
+
+oauth1_user_handler = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, callback = "oob")
+print(oauth1_user_handler.get_authorization_url())
+verifier = input("Input PIN: ")
+access_token, access_token_secret = oauth1_user_handler.get_access_token(verifier)
+api = tweepy.API(oauth1_user_handler, wait_on_rate_limit = True)
+
+
+# In[6]:
 
 
 # In [31]:

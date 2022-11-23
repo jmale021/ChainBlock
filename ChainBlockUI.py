@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[ ]:
 
 
 from tkinter import *
 import tkinter.font as font
-from Demo2 import blockUser, scanTweets
+from Demo2 import blockUser, unblockUser, scanTweets
 import webbrowser
 from PIL import Image, ImageTk
 
@@ -20,7 +20,7 @@ def block_actions():
     
 def unblock_actions():
     #print("Program the unblock actions")
-    username = blockUser()
+    username = unblockUser()
     block_box.insert(INSERT, username + " has been unblocked! \n")
     
 def analytics_actions():
@@ -32,7 +32,7 @@ def scan_actions():
         block_box.insert(INSERT, name + " is a block target!\n")
 
 
-# In[4]:
+# In[ ]:
 
 
 root = Tk()
