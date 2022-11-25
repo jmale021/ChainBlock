@@ -65,8 +65,8 @@ api = tweepy.API(oauth1_user_handler, wait_on_rate_limit = True)
     #printer = StreamListener(consumer_key, consumer_secret, access_token, access_token_secret)
     #printer.filter(track = ["NewNFTProfilePic"])
 
-def blockUser():
-    user = api.get_user(screen_name = 'NFT_Kaneki')
+def blockUser(target):
+    user = api.get_user(screen_name = target)
     api.create_block(screen_name = user.screen_name)
     return user.screen_name
 
