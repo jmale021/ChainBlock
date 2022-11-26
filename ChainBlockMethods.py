@@ -70,8 +70,8 @@ def blockUser(target):
     api.create_block(screen_name = user.screen_name)
     return user.screen_name
 
-def unblockUser():
-    user = api.get_user(screen_name = 'NFT_Kaneki')
+def unblockUser(target):
+    user = api.get_user(screen_name = target)
     api.destroy_block(screen_name = user.screen_name)
     return user.screen_name
 
