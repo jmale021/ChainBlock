@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[15]:
 
 
 from tkinter import *
@@ -14,6 +14,7 @@ from pathlib import Path
 
 def call_back(event):
     webbrowser.open("https://github.com/jmale021/ChainBlock")
+    
     
 #def get_auth_url():
     #global oauth1_user_handler
@@ -32,18 +33,29 @@ def call_back(event):
     #return api
     
 def block_actions():
-    #print("Program the block actions")
-    username = blockUser()
-    block_box.insert(INSERT, username + " has been blocked!\n")
+    with open('block_targets.txt', 'r') as block_targets:
+        with open('blocked_users.txt', 'a') as blocked_users:
+            #strip newline characters from text file
+            temp = block_targets.readlines()
+            targets = [x.strip('\n') for x in temp]
+            #block all targeted users, provide user feedback and write to list of blocked users
+            for user in targets:
+                username = blockUser(user)
+                block_box.insert(INSERT, username + " has been blocked!\n")    
+                blocked_users.write(username + "\n")
+                #must also delete the blocked user from block_targets
+                with open('block_targets.txt', 'w+') as update_targets:
+                    temp2 = update_targets.readlines()
+                    for y in temp2:
+                        if y.strip('\n') != user:
+                            block_targets.write(y + "\n")
     
 def unblock_actions():
-    #print("Program the unblock actions")
     username = unblockUser()
     block_box.insert(INSERT, username + " has been unblocked!\n")
     
 def analytics_actions():
-    #print("Program the analytics actions")
-    path_to_file = 'block_targets.csv'
+    path_to_file = 'blocked_users.txt'
     path = Path(path_to_file)
     
     if path.is_file():
@@ -54,11 +66,13 @@ def analytics_actions():
     
 def scan_actions():
     users = scanTweets()
-    for name in users:
-        block_box.insert(INSERT, name + " is a block target!\n")
+    with open('block_targets.txt', 'a+') as block_targets:
+        for name in users:
+            block_box.insert(INSERT, name + " is a block target!\n")
+            block_targets.write(name + "\n")
 
 
-# In[22]:
+# In[16]:
 
 
 root = Tk()
