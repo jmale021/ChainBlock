@@ -3,8 +3,8 @@
 
 
 import tweepy
-import re
-import requests
+# import re
+# import requests
 
 
 # access_token = '2712395911-ehqFfEGiM5COVQg149vqT5miIcvM8SorJmchg0N'
@@ -21,7 +21,7 @@ consumer_secret = "PO6jkanwHnPltE9umZtTFnElEJ9GSWuxpso3SsEixg5mH3tMf2"
 
 
 oauth1_user_handler = tweepy.OAuth1UserHandler(
-    consumer_key, consumer_secret, callback = "oob"
+    consumer_key, consumer_secret, callback="oob"
 )
 print(oauth1_user_handler.get_authorization_url())
 verifier = input("Input PIN: ")
@@ -63,6 +63,4 @@ def scanTweets():
     for tweet in list_tweets:
         users.append(tweet.user.screen_name)
         i = i + 1
-        
     return users    
-
