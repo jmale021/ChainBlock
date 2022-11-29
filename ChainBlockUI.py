@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import tkinter.font as font
 import webbrowser
 from functools import partial
 from pathlib import Path
 from tkinter import *
 from tkinter import ttk
-import tkinter.font as font
 
 from ChainBlockMethods import blockUser, scanTweets, unblockUser
 from PIL import Image, ImageTk
@@ -151,9 +151,7 @@ title_text.bind("<Button-1>", call_back)
 # pin_button['font'] = font_size
 # pin_button.pack(side = TOP, pady = "5")
 
-scan_button = Button(
-    frame, text="Scan", width="20", fg="red", command=scan_actions
-)
+scan_button = Button(frame, text="Scan", width="20", fg="red", command=scan_actions)
 scan_button["font"] = font_size
 scan_button.pack(side=TOP, pady="5")
 
