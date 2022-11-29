@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import tkinter.font as font
 import webbrowser
 from functools import partial
 from pathlib import Path
 from tkinter import *
 from tkinter import ttk
+import tkinter.font as font
 
-from ChainBlockMethods import blockUser, unblockUser, scanTweets
+from ChainBlockMethods import blockUser, scanTweets, unblockUser
 from PIL import Image, ImageTk
 
 
@@ -24,7 +24,7 @@ def unblockWindow():
     newWindow.iconphoto(False, icon)
     newWindow.geometry("300x300")
 
-    title = Label(newWindow, text="Select a user to unblock.",  bg="red", fg="white")
+    title = Label(newWindow, text="Select a user to unblock.", bg="red", fg="white")
     title["font"] = font_size
     title.pack(fill=X)
 
@@ -151,23 +151,33 @@ title_text.bind("<Button-1>", call_back)
 # pin_button['font'] = font_size
 # pin_button.pack(side = TOP, pady = "5")
 
-scan_button = Button(frame, text="Scan", width="20", fg="red", command=scan_actions)
+scan_button = Button(
+    frame, text="Scan", width="20", fg="red", command=scan_actions
+)
 scan_button["font"] = font_size
 scan_button.pack(side=TOP, pady="5")
 
-block_button = Button(frame, text="Block People", width="20", fg="red", command=block_actions)
+block_button = Button(
+    frame, text="Block People", width="20", fg="red", command=block_actions
+)
 block_button["font"] = font_size
 block_button.pack(side=TOP, pady="5")
 
-unblock_button = Button(frame, text="Unblock People", width="20", fg="red", command=unblockWindow)
+unblock_button = Button(
+    frame, text="Unblock People", width="20", fg="red", command=unblockWindow
+)
 unblock_button["font"] = font_size
 unblock_button.pack(side=TOP, pady="5")
 
-analytics_button = Button(frame, text="View Analytics", width="20", fg="red", command=analytics_actions)
+analytics_button = Button(
+    frame, text="View Analytics", width="20", fg="red", command=analytics_actions
+)
 analytics_button["font"] = font_size
 analytics_button.pack(side=TOP, pady="5")
 
-block_box = Text(bottom_frame, fg="red", width="50", height="10", borderwidth="2", relief="ridge")
+block_box = Text(
+    bottom_frame, fg="red", width="50", height="10", borderwidth="2", relief="ridge"
+)
 block_box["font"] = font_size
 block_box.pack(side=BOTTOM, pady="10")
 
