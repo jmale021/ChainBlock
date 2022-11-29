@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import tkinter as tk
 import tkinter.font as font
 import webbrowser
 from functools import partial
 from pathlib import Path
-import tkinter as tk
 from tkinter import ttk
 
 from ChainBlockMethods import blockUser, scanTweets, unblockUser
@@ -174,7 +174,7 @@ analytics_button["font"] = font_size
 analytics_button.pack(side=tk.TOP, pady="5")
 
 block_box = tk.Text(
-    bottom_frame, fg="red", width="50", height="10", borderwidth="2", relief="ridge"
+    bottom_frame, fg="red", width=50, height="10", borderwidth="2", relief="ridge"
 )
 block_box["font"] = font_size
 block_box.pack(side=tk.BOTTOM, pady="10")
