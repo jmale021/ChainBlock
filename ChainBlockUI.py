@@ -5,7 +5,7 @@ import tkinter.font as font
 import webbrowser
 from functools import partial
 from pathlib import Path
-from tkinter import * # NOQA
+from tkinter import *  # NOQA
 from tkinter import ttk
 
 from ChainBlockMethods import blockUser, scanTweets, unblockUser
