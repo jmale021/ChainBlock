@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import re
 
+import requests
 import tweepy
-# import re
-# import requests
-
 
 # access_token = '2712395911-ehqFfEGiM5COVQg149vqT5miIcvM8SorJmchg0N'
 # access_token_secret = 'K9GuOkmrf1PuwUjUA7lblH3KGotsvIev4vvyYtGxu9Wd0'
