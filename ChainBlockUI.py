@@ -1,21 +1,21 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+import tkinter.font as font
+import webbrowser
+from functools import partial
+from pathlib import Path
 from tkinter import *
 from tkinter import ttk
-import tkinter.font as font
+
 from ChainBlockMethods import blockUser, unblockUser, scanTweets
-import webbrowser
 from PIL import Image, ImageTk
-from pathlib import Path
-from functools import partial
 
 
 def call_back(event):
     webbrowser.open("https://github.com/jmale021/ChainBlock")
 
-    
+
 def unblockWindow():
     newWindow = Toplevel(root)
     newWindow.title("Unblock Users")
@@ -23,44 +23,44 @@ def unblockWindow():
     icon = ImageTk.PhotoImage(icon_photo)
     newWindow.iconphoto(False, icon)
     newWindow.geometry("300x300")
-    
-    title = Label(newWindow, text="Select a user to unblock.",  bg ="red", fg = "white")
+
+    title = Label(newWindow, text="Select a user to unblock.",  bg="red", fg="white")
     title["font"] = font_size
     title.pack(fill=X)
-    
+
     # read in the list of blocked users to fill a dropdown menu
     with open("blocked_users.txt", "r") as blocked_users:
         # strip newline characters from text file
         temp = blocked_users.readlines()
         targets = [x.strip("\n") for x in temp]
-        
+
     dropdown = ttk.Combobox(newWindow, values=targets, state="readonly")
     dropdown.pack(side=TOP, pady="10")
-    
+
     unblock_confirm = Button(
-        newWindow, 
-        text="Unblock", 
-        width="20", 
-        compound=CENTER, 
-        fg="red", 
+        newWindow,
+        text="Unblock",
+        width="20",
+        compound=CENTER,
+        fg="red",
         command=partial(unblock_actions, dropdown),
     )
     unblock_confirm["font"] = font_size
     unblock_confirm.pack(side=BOTTOM, pady="10")
-    
-    
+
+
 # def get_auth_url():
 # global oauth1_user_handler
 # oauth1_user_handler = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, callback = "oob")
 # webbrowser.open(oauth1_user_handler.get_authorization_url())
-    
+
 # def complete_auth():
 # global entry
 # verifier = entry.get()
 # global access_token
 # global access_token_secret
 # access_token, access_token_secret = oauth1_user_handler.get_access_token(verifier)
-    
+
 # def get_api():
 # api = tweepy.API(oauth1_user_handler, wait_on_rate_limit = True)
 # return api
@@ -71,11 +71,11 @@ def block_actions():
         with open("blocked_users.txt", "a") as blocked_users:
             # strip newline characters from text file
             temp = block_targets.readlines()
-            targets = [x.strip("\n ') for x in temp]
+            targets = [x.strip("\n") for x in temp]
             # block all targeted users, provide user feedback and write to list of blocked users
             for user in targets:
                 username = blockUser(user)
-                block_box.insert(INSERT, "@" + username + " has been blocked!\n")    
+                block_box.insert(INSERT, "@" + username + " has been blocked!\n")
                 blocked_users.write(username + "\n")
                 # must also delete the blocked user from block_targets
                 with open("block_targets.txt", "w+") as update_targets:
@@ -83,34 +83,34 @@ def block_actions():
                     for y in temp2:
                         if y.strip("\n") != user:
                             block_targets.write(y + "\n")
-                               
-    
+
+
 def unblock_actions(user):
     # grab the selected user, unblock and provide feedback
     target = user.get()
     username = unblockUser(target)
     block_box.insert(INSERT, "@" + username + " has been unblocked!\n")
-    
-    # must also delete the unblocked user from blocked_users  
+
+    # must also delete the unblocked user from blocked_users
     with open("blocked_users.txt", "r") as update_blocks:
         temp = update_blocks.readlines()
     with open("blocked_users.txt", "w") as update_blocks:
         for x in temp:
             if x.strip("\n") != username:
                 update_blocks.write(x)
-                               
-    
+
+
 def analytics_actions():
     path_to_file = "blocked_users.txt"
     path = Path(path_to_file)
-    
+
     if path.is_file():
         block_box.insert(INSERT, path_to_file + " found!\n")
-        
+
     else:
         block_box.insert(INSERT, path_to_file + " does not exist!\n")
 
-                               
+
 def scan_actions():
     users = scanTweets()
     with open("block_targets.txt", "a+") as block_targets:
@@ -134,7 +134,7 @@ bottom_frame.pack(side=BOTTOM)
 
 font_size = font.Font(size=16)
 
-title_text = Label(frame, text ="ChainBlock Ver. 2.0", bg="red", fg="white")
+title_text = Label(frame, text="ChainBlock Ver. 2.0", bg="red", fg="white")
 title_text["font"] = font_size
 title_text.pack(fill=X)
 title_text.bind("<Button-1>", call_back)
