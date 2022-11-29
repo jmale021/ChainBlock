@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import re
+#import re
 
-import requests
+#import requests
 import tweepy
 
 # access_token = '2712395911-ehqFfEGiM5COVQg149vqT5miIcvM8SorJmchg0N'
@@ -62,4 +62,4 @@ def scanTweets():
     for tweet in list_tweets:
         users.append(tweet.user.screen_name)
         i = i + 1
-    return users    
+    return users
